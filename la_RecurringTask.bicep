@@ -70,7 +70,7 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
           inputs: {
             host: {
               connection: {
-                name: connectionName
+                name: '@parameters(\'$connections\')[\'todoconsumer\'][\'connectionId\']'
               }
             }
             method: 'post'
