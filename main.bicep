@@ -11,7 +11,7 @@ param subscriptionId string = subscription().id
   'Enabled'
   'Disabled'
 ])
-param flowState string = 'Enabled'
+param flowState string = 'Disabled'
 
 module connections 'connections.bicep' = {
   name: 'personalFlowsConnections_${buildId}'
@@ -27,7 +27,7 @@ module blueFilterReplacement 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_ReplaceBlueWaterFilter'
     location: location
-    flowState: flowState
+    flowState: 'Enabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates bi-monthly blue water filter change task'
@@ -45,7 +45,7 @@ module greenFilterReplacement 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_ReplaceGreenWaterFilter'
     location: location
-    flowState: flowState
+    flowState: 'Enabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates bi-monthly green water filter change task'
@@ -63,7 +63,7 @@ module pinkFilterReplacement 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_ReplacePinkWaterFilter'
     location: location
-    flowState: flowState
+    flowState: 'Enabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates bi-monthly pink water filter change task'
@@ -73,5 +73,117 @@ module pinkFilterReplacement 'la_RecurringTask.bicep' = {
     hoursToTaskDue: 48
     hoursToReminder: 24
     taskTitle: 'Change Brita Pitcher Filter - Pink'
+  }
+}
+
+module petFleaMeds 'la_RecurringTask.bicep' = {
+  name: 'petFleaMeds_${buildId}'
+  params: {
+    logicAppName: 'la_GivePetFleaMeds'
+    location: location
+    flowState: 'Enabled'
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates monthly apply pet flea meds task'
+    startTime: '2024-12-27T12:00:00.000Z'
+    frequency: 'Month'
+    interval: 1
+    hoursToTaskDue: 12
+    hoursToReminder: 8
+    taskTitle: 'Give pets flea meds'
+  }
+}
+module letDogOutMorning 'la_RecurringScheduledTask.bicep' = {
+  name: 'letDogOutMorning_${buildId}'
+  params: {
+    logicAppName: 'la_LetDogOutMorning'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily let dog out in the morning task'
+    startTime: '2024-12-27T12:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 4
+    hoursToReminder: 2
+    taskTitle: 'Let Dog Out - Morning'
+    runHour: '6'
+  }
+}
+
+module letDogOutEvening 'la_RecurringScheduledTask.bicep' = {
+  name: 'letDogOutEvening_${buildId}'
+  params: {
+    logicAppName: 'la_LetDogOutEvening'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily let dog out in the evening task'
+    startTime: '2024-12-27T12:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 4
+    hoursToReminder: 2
+    taskTitle: 'Let Dog Out - Evening'
+    runHour: '19'
+  }
+}
+
+module giveDogPill 'la_RecurringScheduledTask.bicep' = {
+  name: 'giveDogPill_${buildId}'
+  params: {
+    logicAppName: 'la_giveDogPill'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily give dog denamarin task'
+    startTime: '2024-12-27T12:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 4
+    hoursToReminder: 2
+    taskTitle: 'Give dog Denamarin'
+    runHour: '5'
+  }
+}
+
+module feedCatBreakfast 'la_RecurringScheduledTask.bicep' = {
+  name: 'feedCatBreakfast_${buildId}'
+  params: {
+    logicAppName: 'la_feedCatBreakfast'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily feed cat breakfast task'
+    startTime: '2024-12-27T12:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 4
+    hoursToReminder: 2
+    taskTitle: 'Feed cat breakfast'
+    runHour: '5'
+  }
+}
+
+module feedCatDinner 'la_RecurringScheduledTask.bicep' = {
+  name: 'feedCatDinner_${buildId}'
+  params: {
+    logicAppName: 'la_feedCatDinner'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily feed cat dinner task'
+    startTime: '2024-12-27T12:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 4
+    hoursToReminder: 2
+    taskTitle: 'Feed cat dinner'
+    runHour: '16'
   }
 }

@@ -1,0 +1,144 @@
+@description('The name of the logic app to create.')
+param logicAppName string
+@description('Location of the resource group, resources are deployed here')
+param location string
+@description('Switch to disabled to turn off flows')
+@allowed([
+  'Enabled'
+  'Disabled'
+])
+param flowState string = 'Enabled'
+@description('Name of To Do Consumer connection in same resource group')
+param connectionName string
+@description('Id of To Do consumer connection in same resource group')
+param connectionId string
+@description('Informational purpose tag to add to resource')
+param purposeTag string
+@description('The frequency interval of the recurrence')
+@allowed([
+  'Second'
+  'Minute'
+  'Hour'
+  'Day'
+  'Week'
+  'Month'
+])
+param frequency string
+@description('Whole number integer of frequency periods between recurrences')
+param interval int
+@description('When the schedule of recurrences should start')
+param startTime string
+@description('Integer number of hours to when due date should be set')
+param hoursToTaskDue int
+@description('Integer number of hours until a reminder is scheduled')
+param hoursToReminder int
+@description('Text to desribe the needed task, timestamp will be added after')
+param taskTitle string
+@description('The hour in military time when this task should run')
+@allowed([
+  '0'
+  '1'
+  '2'
+  '3'
+  '4'
+  '5'
+  '6'
+  '7'
+  '8'
+  '9'
+  '10'
+  '11'
+  '12'
+  '13'
+  '14'
+  '15'
+  '16'
+  '17'
+  '18'
+  '19'
+  '20'
+  '21'
+  '22'
+  '23'
+])
+param runHour string
+
+resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
+  name: logicAppName
+  location: location
+  tags: {
+    purpose: purposeTag
+  }
+  properties: {
+    state: flowState
+    definition: {
+      '$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
+      contentVersion: '1.0.0.0'
+      parameters: {
+        '$connections': {
+          defaultValue: {}
+          type: 'Object'
+        }
+      }
+      triggers: {
+        '${interval}_${frequency}(s)': {
+          recurrence: {
+            interval: interval
+            frequency: frequency
+            startTime: startTime
+            timeZone: 'Central Standard Time'
+          }
+          type: 'Recurrence'
+          schedule: {
+            hours: [
+                runHour
+            ]
+        }
+        }
+      }
+      actions: {
+        Add_recurring_item: {
+          runAfter: {}
+          type: 'ApiConnection'
+          inputs: {
+            host: {
+              connection: {
+                name: '@parameters(\'$connections\')[\'todoconsumer\'][\'connectionId\']'
+              }
+            }
+            method: 'post'
+            body: {
+              title: '${taskTitle} @{convertTimezone(utcNow(),\'UTC\',\'Central Standard Time\',\'MM-dd\')}'
+              dueDateTime: {
+                dateTime: '@addHours(convertTimezone(utcNow(),\'UTC\',\'Central Standard Time\'),${hoursToTaskDue})'
+                timeZone: 'UTC'
+              }
+              reminderDateTime: {
+                dateTime: '@addHours(utcNow(),${hoursToReminder})'
+                timeZone: 'UTC'
+              }
+              importance: 'normal'
+              status: 'notStarted'
+              body: {
+                contentType: 'html'
+              }
+            }
+            path: '/lists/@{encodeURIComponent(\'AQMkADAwATMwMAItYjc3ADItMzMANjktMDACLTAwCgAuAAADQPd8gnkgGkqxpLHWo7bDjgEAb36bwlZLNU6EdSu91xXKmAAIbV4AQQAAAA==\')}/tasks'
+          }
+        }
+      }
+      outputs: {}
+    }
+    parameters: {
+      '$connections': {
+        value: {
+          todoconsumer: {
+            id: subscriptionResourceId('Microsoft.Web/locations/managedApis',location,connectionName)
+            connectionId: connectionId
+            connectionName: connectionName
+          }
+        }
+      }
+    }
+  }
+}
