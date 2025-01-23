@@ -24,7 +24,7 @@ resource connections_todoconsumer_name_resource 'Microsoft.Web/connections@2016-
       description: 'Microsoft To-Do is an intelligent task management app that makes it easy to plan and manage your day. Connect to Microsoft To-Do to manage your tasks from various services. You can perform actions such as creating tasks.'
       iconUri: 'https://conn-afd-prod-endpoint-bmc9bqahasf3grgk.b01.azurefd.net/releases/v1.0.1690/1.0.1690.3719/${connections_todoconsumer_name}/icon.png'
       brandColor: '#185ABD'
-      id: '/subscriptions/${subscriptionId}/providers/Microsoft.Web/locations/${location}/managedApis/${connections_todoconsumer_name}'
+      id: subscriptionResourceId('Microsoft.Web/locations/managedApis',location,connections_todoconsumer_name)
       type: 'Microsoft.Web/locations/managedApis'
     }
     testLinks: [

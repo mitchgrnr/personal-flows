@@ -2,10 +2,6 @@
 param logicAppName string
 @description('Location of the resource group, resources are deployed here')
 param location string
-@description('Retrieved name of the deployment resource group')
-param resourceGroupName string
-@description('Generated Id of the azure subscription')
-param subscriptionId string
 @description('Switch to disabled to turn off flows')
 @allowed([
   'Enabled'
@@ -103,7 +99,7 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
       '$connections': {
         value: {
           todoconsumer: {
-            id: '/subscriptions/${subscriptionId}/providers/Microsoft.Web/locations/${location}/managedApis/${connectionName}'
+            id: subscriptionResourceId('Microsoft.Web/locations/managedApis',location,connectionName)
             connectionId: connectionId
             connectionName: connectionName
           }

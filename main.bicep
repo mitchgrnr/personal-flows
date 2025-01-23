@@ -25,8 +25,6 @@ module blueFilterReplacement 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_ReplaceBlueWaterFilter'
     location: location
-    resourceGroupName: resourceGroupName
-    subscriptionId: subscriptionId
     flowState: flowState
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
