@@ -39,10 +39,6 @@ param hoursToReminder int
 @description('Text to desribe the needed task, timestamp will be added after')
 param taskTitle string
 
-var actionType = 'http'
-var method = 'GET'
-var workflowSchema = 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
-
 resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
   name: logicAppName
   location: location
