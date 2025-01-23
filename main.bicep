@@ -39,4 +39,39 @@ module blueFilterReplacement 'la_RecurringTask.bicep' = {
     taskTitle: 'Change Brita Tank Filter - Blue'
   }
 }
-    
+
+module greenFilterReplacement 'la_RecurringTask.bicep' = {
+  name: 'replaceGreenFilter_${buildId}'
+  params: {
+    logicAppName: 'la_ReplaceGreenWaterFilter'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates bi-monthly green water filter change task'
+    startTime: '2025-01-14T02:40'
+    frequency: 'Month'
+    interval: 2
+    hoursToTaskDue: 48
+    hoursToReminder: 24
+    taskTitle: 'Change Brita Pitcher Filter - Green'
+  }
+}
+
+module pinkFilterReplacement 'la_RecurringTask.bicep' = {
+  name: 'replacePinkFilter_${buildId}'
+  params: {
+    logicAppName: 'la_ReplacePinkWaterFilter'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates bi-monthly pink water filter change task'
+    startTime: '2025-01-14T02:40'
+    frequency: 'Month'
+    interval: 2
+    hoursToTaskDue: 48
+    hoursToReminder: 24
+    taskTitle: 'Change Brita Pitcher Filter - Pink'
+  }
+}
