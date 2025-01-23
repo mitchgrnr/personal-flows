@@ -90,7 +90,7 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
                 contentType: 'html'
               }
             }
-            path: '/lists/@{encodeURIComponent("AQMkADAwATMwMAItYjc3ADItMzMANjktMDACLTAwCgAuAAADQPd8gnkgGkqxpLHWo7bDjgEAb36bwlZLNU6EdSu91xXKmAAIbV4AQQAAAA==")}/tasks'
+            path: '/lists/@{encodeURIComponent(\'AQMkADAwATMwMAItYjc3ADItMzMANjktMDACLTAwCgAuAAADQPd8gnkgGkqxpLHWo7bDjgEAb36bwlZLNU6EdSu91xXKmAAIbV4AQQAAAA==\')}/tasks'
           }
         }
       }
