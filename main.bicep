@@ -1,3 +1,5 @@
+@description('Auto-generated build id used in deployment names')
+param buildId int
 @description('Location of the resource group, resources are deployed here')
 param location string = resourceGroup().location
 @description('Retrieved name of the deployment resource group')
@@ -12,7 +14,7 @@ param subscriptionId string = subscription().id
 param flowState string = 'Enabled'
 
 module connections 'connections.bicep' = {
-  name: 'personFlowsConnections'
+  name: 'personalFlowsConnections_${buildId}'
   params: {
     location: location
     resourceGroupName: resourceGroupName
@@ -21,7 +23,7 @@ module connections 'connections.bicep' = {
 }
 
 module blueFilterReplacement 'la_RecurringTask.bicep' = {
-  name: 'replaceBlueFilter'
+  name: 'replaceBlueFilter_${buildId}'
   params: {
     logicAppName: 'la_ReplaceBlueWaterFilter'
     location: location

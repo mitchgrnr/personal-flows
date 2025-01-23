@@ -23,5 +23,7 @@ jobs:
         subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
         resourceGroupName: ${{ secrets.AZURE_RG }}
         template: ./main.bicep
-        parameters: 'flowState=Enabled'
+        parameters: 'flowState=Enabled buildId=${{github.run_number}}'
         failOnStdErr: false
+        name: 'deployPersonalFlows_${{github.run_number}}'
+
