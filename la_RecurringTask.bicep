@@ -50,7 +50,7 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
     purpose: purposeTag
   }
   properties: {
-    state: 'Enabled'
+    state: flowState
     definition: {
       '$schema': 'https://schema.management.azure.com/providers/Microsoft.Logic/schemas/2016-06-01/workflowdefinition.json#'
       contentVersion: '1.0.0.0'
