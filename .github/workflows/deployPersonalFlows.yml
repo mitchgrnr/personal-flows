@@ -25,5 +25,5 @@ jobs:
         template: ./main.bicep
         parameters: 'flowState=Enabled buildId=${{github.run_number}}'
         failOnStdErr: false
-        name: 'deployPersonalFlows_${{github.run_number}}'
+        deploymentName: 'deployPersonalFlows_${{github.run_number}}'
 
