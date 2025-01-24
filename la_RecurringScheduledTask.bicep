@@ -87,13 +87,13 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
             frequency: frequency
             startTime: startTime
             timeZone: 'Central Standard Time'
+            schedule: {
+              hours: [
+                  runHour
+              ]
+            }
           }
           type: 'Recurrence'
-          schedule: {
-            hours: [
-                runHour
-            ]
-        }
         }
       }
       actions: {
