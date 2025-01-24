@@ -187,3 +187,20 @@ module feedCatDinner 'la_RecurringScheduledTask.bicep' = {
     runHour: '16'
   }
 }
+
+module dailyDogFeeding 'laRecurringMorningAndEveningTask.bicep' = {
+  name: 'dailyDogFeeding_${buildId}'
+  params: {
+    logicAppName: 'la_dailyDogFeeding'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily dog feeding tasks'
+    dueTime: 1
+    eveningTime: 17
+    remindTime: 1
+    taskName: 'Feed dog'
+    waitForTask: 'Give dog Denamarin'
+  }
+}
