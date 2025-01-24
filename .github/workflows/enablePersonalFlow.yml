@@ -1,4 +1,4 @@
-name: Deploy Personal Flows
+name: Enable Personal Flows
 on: 
   workflow_dispatch:
 jobs:
