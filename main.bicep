@@ -204,3 +204,59 @@ module dailyDogFeeding 'laRecurringMorningAndEveningTask.bicep' = {
     waitForTask: 'Give dog Denamarin'
   }
 }
+
+module dilationOne 'la_RecurringScheduledTask.bicep' = {
+  name: 'dilationOne_${buildId}'
+  params: {
+    logicAppName: 'la_dilationOne'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates frist daily dilation task'
+    startTime: '2024-02-03T12:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 2
+    hoursToReminder: 1
+    taskTitle: 'Dilation 1'
+    runHour: '5'
+  }
+}
+
+module dilationTwo 'la_RecurringScheduledTask.bicep' = {
+  name: 'dilationTwo_${buildId}'
+  params: {
+    logicAppName: 'la_dilationTwo'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily second dilation task'
+    startTime: '2024-02-03T00:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 2
+    hoursToReminder: 1
+    taskTitle: 'Feed cat dinner'
+    runHour: '11'
+  }
+}
+module dilationThree 'la_RecurringScheduledTask.bicep' = {
+  name: 'dilationThree_${buildId}'
+  params: {
+    logicAppName: 'la_diltionThree'
+    location: location
+    flowState: flowState
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates daily third dilation task'
+    startTime: '2024-02-03T00:00:00.000Z'
+    frequency: 'Day'
+    interval: 1
+    hoursToTaskDue: 2
+    hoursToReminder: 1
+    taskTitle: 'Dilation 3'
+    runHour: '17'
+  }
+}
