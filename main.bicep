@@ -39,13 +39,13 @@ module blueFilterReplacement 'la_RecurringTask.bicep' = {
     taskTitle: 'Change Brita Tank Filter - Blue'
   }
 }
-
+//Green pitcher is gone, only here for posterity
 module greenFilterReplacement 'la_RecurringTask.bicep' = {
   name: 'replaceGreenFilter_${buildId}'
   params: {
     logicAppName: 'la_ReplaceGreenWaterFilter'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates bi-monthly green water filter change task'
@@ -73,6 +73,24 @@ module pinkFilterReplacement 'la_RecurringTask.bicep' = {
     hoursToTaskDue: 48
     hoursToReminder: 24
     taskTitle: 'Change Brita Pitcher Filter - Pink'
+  }
+}
+
+module trtShot 'la_RecurringTask.bicep' = {
+  name: 'trtShot_${buildId}'
+  params: {
+    logicAppName: 'la_trtShot'
+    location: location
+    flowState: 'Enabled'
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates weekly TRT Shot Item'
+    startTime: '2025-02-24T05:00'
+    frequency: 'Week'
+    interval: 1
+    hoursToTaskDue: 12
+    hoursToReminder: 6
+    taskTitle: 'Testosterone Shot'
   }
 }
 
@@ -106,9 +124,9 @@ module letDogOutMorning 'la_RecurringScheduledTask.bicep' = {
     frequency: 'Day'
     interval: 1
     hoursToTaskDue: 4
-    hoursToReminder: 2
+    hoursToReminder: 1
     taskTitle: 'Let Dog Out - Morning'
-    runHour: '6'
+    runHour: '5'
   }
 }
 
@@ -125,9 +143,9 @@ module letDogOutEvening 'la_RecurringScheduledTask.bicep' = {
     frequency: 'Day'
     interval: 1
     hoursToTaskDue: 4
-    hoursToReminder: 2
+    hoursToReminder: 1
     taskTitle: 'Let Dog Out - Evening'
-    runHour: '19'
+    runHour: '18'
   }
 }
 
@@ -143,8 +161,8 @@ module giveDogPill 'la_RecurringScheduledTask.bicep' = {
     startTime: '2024-12-27T12:00:00.000Z'
     frequency: 'Day'
     interval: 1
-    hoursToTaskDue: 4
-    hoursToReminder: 2
+    hoursToTaskDue: 3
+    hoursToReminder: 1
     taskTitle: 'Give dog Denamarin'
     runHour: '5'
   }
@@ -162,8 +180,8 @@ module feedCatBreakfast 'la_RecurringScheduledTask.bicep' = {
     startTime: '2024-12-27T12:00:00.000Z'
     frequency: 'Day'
     interval: 1
-    hoursToTaskDue: 4
-    hoursToReminder: 2
+    hoursToTaskDue: 2
+    hoursToReminder: 1
     taskTitle: 'Feed cat breakfast'
     runHour: '5'
   }
@@ -181,8 +199,8 @@ module feedCatDinner 'la_RecurringScheduledTask.bicep' = {
     startTime: '2024-12-27T12:00:00.000Z'
     frequency: 'Day'
     interval: 1
-    hoursToTaskDue: 4
-    hoursToReminder: 2
+    hoursToTaskDue: 2
+    hoursToReminder: 1
     taskTitle: 'Feed cat dinner'
     runHour: '16'
   }
@@ -238,8 +256,8 @@ module dilationTwo 'la_RecurringScheduledTask.bicep' = {
     interval: 1
     hoursToTaskDue: 2
     hoursToReminder: 1
-    taskTitle: 'Feed cat dinner'
-    runHour: '11'
+    taskTitle: 'Dilation 2'
+    runHour: '10'
   }
 }
 module dilationThree 'la_RecurringScheduledTask.bicep' = {
@@ -257,6 +275,6 @@ module dilationThree 'la_RecurringScheduledTask.bicep' = {
     hoursToTaskDue: 2
     hoursToReminder: 1
     taskTitle: 'Dilation 3'
-    runHour: '17'
+    runHour: '16'
   }
 }
