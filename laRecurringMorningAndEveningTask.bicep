@@ -122,7 +122,7 @@ resource logicApp 'Microsoft.Logic/workflows@2017-07-01' = {
                 body: {
                   title: '${taskName} evening at @{convertTimezone(addHours(utcNow(),${dueTime}),\'UTC\',\'Central Standard Time\',\'hh:mmtt\')},  @{convertTimezone(utcNow(),\'UTC\',\'Central Standard Time\',\'MM-dd\')}'
                   dueDateTime: {
-                    dateTime: '@convertTimeZone(addTime(utcNow(),${dueTime}),\'UTC\', \'Central Standard Time\',\'yyyy-MM-dd\')'
+                    dateTime: '@convertTimeZone(addHours(utcNow(),${dueTime}),\'UTC\', \'Central Standard Time\',\'yyyy-MM-dd\')'
                     timeZone: 'UTC'
                   }
                   reminderDateTime: {
