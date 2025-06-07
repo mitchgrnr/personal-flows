@@ -85,12 +85,80 @@ module trtShot 'la_RecurringTask.bicep' = {
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates weekly TRT Shot Item'
-    startTime: '2025-02-24T05:00'
+    startTime: '2025-06-11T05:00'
     frequency: 'Week'
     interval: 1
     hoursToTaskDue: 12
     hoursToReminder: 6
     taskTitle: 'Testosterone Shot'
+  }
+}
+module hizentraInfustion 'la_RecurringTask.bicep' = {
+  name: 'hizentraInfusion_${buildId}'
+  params: {
+    logicAppName: 'la_hizentraInfusion'
+    location: location
+    flowState: 'Enabled'
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates weekly item for Hizentra home infustion'
+    startTime: '2025-06-11T05:00'
+    frequency: 'Week'
+    interval: 1
+    hoursToTaskDue: 5
+    hoursToReminder: 3
+    taskTitle: 'Immunoglobulin Home Infusion'
+  }
+}
+module takeTrashOut 'la_RecurringTask.bicep' = {
+  name: 'takeTrashOut_${buildId}'
+  params: {
+    logicAppName: 'la_takeTrashOut'
+    location: location
+    flowState: 'Enabled'
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates weekly item for taking trash out'
+    startTime: '2025-06-12T05:00'
+    frequency: 'Week'
+    interval: 1
+    hoursToTaskDue: 14
+    hoursToReminder: 8
+    taskTitle: 'Take trash out and cans to curb'
+  }
+}
+module putHelloFreshAway 'la_RecurringTask.bicep' = {
+  name: 'putHelloFreshAway_${buildId}'
+  params: {
+    logicAppName: 'la_putHelloFreshAway'
+    location: location
+    flowState: 'Enabled'
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates weekly item to put away Hello Fresh box'
+    startTime: '2025-06-13T05:00'
+    frequency: 'Week'
+    interval: 1
+    hoursToTaskDue: 14
+    hoursToReminder: 10
+    taskTitle: 'Put away contents of Hello Fresh box'
+  }
+}
+module laminateRecipeCards 'la_RecurringTask.bicep' = {
+  name: 'laminateRecipeCards_${buildId}'
+  params: {
+    logicAppName: 'la_laminateRecipeCards'
+    location: location
+    flowState: 'Enabled'
+    connectionId: connections.outputs.connectionId
+    connectionName: connections.outputs.connectionName
+    purposeTag: 'Creates weekly item for laminating and sorting recipe kit cards'
+    startTime: '2025-06-13T05:00'
+    frequency: 'Week'
+    interval: 1
+    hoursToTaskDue: 14
+    hoursToReminder: 10
+    taskTitle: 'Laminate recipe kit cards and plan meals for the week'
   }
 }
 
@@ -116,7 +184,7 @@ module letDogOutMorning 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_LetDogOutMorning'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily let dog out in the morning task'
@@ -135,7 +203,7 @@ module letDogOutEvening 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_LetDogOutEvening'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily let dog out in the evening task'
@@ -154,7 +222,7 @@ module giveDogPill 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_giveDogPill'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily give dog denamarin task'
@@ -211,7 +279,7 @@ module dailyDogFeeding 'laRecurringMorningAndEveningTask.bicep' = {
   params: {
     logicAppName: 'la_dailyDogFeeding'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily dog feeding tasks'
@@ -257,7 +325,7 @@ module dilationTwo 'la_RecurringScheduledTask.bicep' = {
     hoursToTaskDue: 2
     hoursToReminder: 1
     taskTitle: 'Dilation 2'
-    runHour: '10'
+    runHour: '14'
   }
 }
 module dilationThree 'la_RecurringScheduledTask.bicep' = {
@@ -265,7 +333,7 @@ module dilationThree 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_diltionThree'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily third dilation task'
