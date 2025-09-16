@@ -27,7 +27,7 @@ module blueFilterReplacement 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_ReplaceBlueWaterFilter'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates bi-monthly blue water filter change task'
@@ -63,7 +63,7 @@ module pinkFilterReplacement 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_ReplacePinkWaterFilter'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates bi-monthly pink water filter change task'
@@ -81,7 +81,7 @@ module trtShot 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_trtShot'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates weekly TRT Shot Item'
@@ -98,7 +98,7 @@ module hizentraInfustion 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_hizentraInfusion'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates weekly item for Hizentra home infustion'
@@ -115,7 +115,7 @@ module takeTrashOut 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_takeTrashOut'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates weekly item for taking trash out'
@@ -132,7 +132,7 @@ module putHelloFreshAway 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_putHelloFreshAway'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates weekly item to put away Hello Fresh box'
@@ -149,7 +149,7 @@ module laminateRecipeCards 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_laminateRecipeCards'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates weekly item for laminating and sorting recipe kit cards'
@@ -167,7 +167,7 @@ module petFleaMeds 'la_RecurringTask.bicep' = {
   params: {
     logicAppName: 'la_GivePetFleaMeds'
     location: location
-    flowState: 'Enabled'
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates monthly apply pet flea meds task'
@@ -241,7 +241,7 @@ module feedCatBreakfast 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_feedCatBreakfast'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily feed cat breakfast task'
@@ -260,7 +260,7 @@ module feedCatDinner 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_feedCatDinner'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily feed cat dinner task'
@@ -296,7 +296,7 @@ module dilationOne 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_dilationOne'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates frist daily dilation task'
@@ -315,7 +315,7 @@ module dilationTwo 'la_RecurringScheduledTask.bicep' = {
   params: {
     logicAppName: 'la_dilationTwo'
     location: location
-    flowState: flowState
+    flowState: 'Disabled'
     connectionId: connections.outputs.connectionId
     connectionName: connections.outputs.connectionName
     purposeTag: 'Creates daily second dilation task'
